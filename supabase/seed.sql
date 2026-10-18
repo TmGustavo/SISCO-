@@ -1,0 +1,2 @@
+-- Datos de desarrollo pendientes de definir.
+-- No contiene ni carga datos en una base de datos remota.
