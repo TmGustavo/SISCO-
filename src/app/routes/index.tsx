@@ -15,6 +15,10 @@ import { GpsPage } from '../../features/tracking/GpsPage'
 import { VehiclesPage } from '../../features/vehicles/VehiclesPage'
 import { PagePlaceholder } from '../../components/ui/PagePlaceholder'
 import { AppLayout } from './AppLayout'
+import { KaluzChatPage } from '../../features/ai/KaluzChatPage'
+
+
+import { WhatsAppDemoPage } from '../../features/ai/WhatsAppDemoPage'
 
 const routes = [
   { index: true, element: <Navigate to="/turismo" replace /> },
@@ -24,7 +28,10 @@ const routes = [
   { path: 'conductor', element: <DriverPortalPage /> },
   { path: 'mis-reservas', element: <MyBookingsPage /> },
   { path: 'admin/gps', element: <GpsPage /> },
+  { path: 'demo-whatsapp', element: <WhatsAppDemoPage /> },
   { path: '*', element: <PagePlaceholder title="Página no encontrada" description="La ruta solicitada no existe en Kaluz Digital." /> },
+  { path: 'asistente', element: <KaluzChatPage /> },
+
 ]
 
 export const router = createBrowserRouter([
