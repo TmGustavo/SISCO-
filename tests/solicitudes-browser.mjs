@@ -191,7 +191,7 @@ try {
     await evaluate("document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}))")
     await waitFor("!document.querySelector('[role=dialog]')")
   }
-  for (const [path, title] of [['dashboard', 'Dashboard'], ['afiliados', 'Afiliados'], ['conductores', 'Conductores'], ['vehiculos', 'Vehículos'], ['pagos', 'Pagos y cuotas'], ['documentos', 'Documentos y vencimientos'], ['alquileres', 'Alquileres'], ['gps', 'Seguimiento GPS']]) {
+  for (const [path, title] of [['dashboard', 'Dashboard'], ['afiliados', 'Padrón de Afiliados'], ['conductores', 'Gestión de Conductores'], ['vehiculos', 'Vehículos - Flota'], ['pagos', 'Gestión de Pagos y Cuotas'], ['documentos', 'Gestión de Documentos'], ['alquileres', 'Gestión de Alquileres'], ['gps', 'Seguimiento GPS']]) {
     await call('Page.navigate', { url: `${baseUrl}/admin/${path}` })
     await waitFor(`document.querySelector('h1')?.textContent === ${JSON.stringify(title)}`)
   }
