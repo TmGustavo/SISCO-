@@ -1,6 +1,7 @@
 ﻿import { useCallback, useEffect, useMemo, useState } from 'react'
 import { BriefcaseBusiness, CarFront, CheckCircle2, ClipboardList, Clock3, FileClock, FolderOpen, Plus, Search, SlidersHorizontal, UsersRound } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import { applyAction, createRequest, filterRequests, getStats, isRequest, statusLabels, typeLabels } from './model.ts'
 import { RequestDetail } from './RequestDetail.tsx'
 import { RequestForm } from './RequestForm.tsx'
@@ -14,17 +15,18 @@ const categoryIcons: Record<RequestType, LucideIcon> = { afiliacion: UsersRound,
 const selectStyle = 'h-11 rounded-lg border border-slate-200 bg-white px-3 text-base text-slate-600 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100 sm:text-sm'
 
 export function SolicitudesPage() {
+  const [searchParams] = useSearchParams()
   const [initial] = useState(() => {
     try { return loadRequests(window.localStorage) } catch { return loadRequests({ getItem: () => { throw new Error('Storage unavailable') } }) }
   })
   const [requests, setRequests] = useState<Solicitud[]>(initial.requests)
   const [warning, setWarning] = useState(initial.warning)
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(() => searchParams.get('buscar') ?? '')
   const [type, setType] = useState<RequestType | 'todos'>('todos')
   const [status, setStatus] = useState<RequestStatus | 'todos'>('todos')
   const [selected, setSelected] = useState<string[]>([])
-  const [detailId, setDetailId] = useState<string | null>(initial.requests[0]?.id ?? null)
-  const [detailOpen, setDetailOpen] = useState(false)
+  const [detailId, setDetailId] = useState<string | null>(() => initial.requests.find(item => item.id === searchParams.get('buscar'))?.id ?? initial.requests[0]?.id ?? null)
+  const [detailOpen, setDetailOpen] = useState(() => initial.requests.some(item => item.id === searchParams.get('buscar')))
   const [formOpen, setFormOpen] = useState(false)
   const [notice, setNotice] = useState('')
   const closeDetail = useCallback(() => setDetailOpen(false), [])

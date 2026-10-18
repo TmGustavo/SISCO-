@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "npm run typecheck && vite build",
     "lint": "oxlint src",
+    "test": "node --test --test-isolation=none tests/solicitudes.test.ts tests/affiliates.test.ts tests/drivers.test.ts tests/vehicles.test.ts tests/documents.test.ts tests/rentals.test.ts",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview"
   },

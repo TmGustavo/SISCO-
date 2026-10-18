@@ -23,18 +23,18 @@ const routes = [
   { path: 'solicitar', element: <RequestServicePage /> },
   { path: 'conductor', element: <DriverPortalPage /> },
   { path: 'mis-reservas', element: <MyBookingsPage /> },
-  { path: 'admin/dashboard', element: <AdminDashboardPage /> },
-  { path: 'admin/afiliados', element: <AffiliatesPage /> },
-  { path: 'admin/conductores', element: <AdminDriversPage /> },
-  { path: 'admin/vehiculos', element: <VehiclesPage /> },
-  { path: 'admin/pagos', element: <PaymentsPage /> },
-  { path: 'admin/documentos', element: <DocumentsPage /> },
-  { path: 'admin/alquileres', element: <AdminRentalsPage /> },
   { path: 'admin/gps', element: <GpsPage /> },
   { path: '*', element: <PagePlaceholder title="Página no encontrada" description="La ruta solicitada no existe en Kaluz Digital." /> },
 ]
 
 export const router = createBrowserRouter([
+  { path: '/admin/dashboard', element: <AdminDashboardPage /> },
+  { path: '/admin/alquileres', element: <AdminRentalsPage /> },
+  { path: '/admin/pagos', element: <PaymentsPage /> },
+  { path: '/admin/documentos', element: <DocumentsPage /> },
+  { path: '/admin/vehiculos', element: <VehiclesPage /> },
+  { path: '/admin/conductores', element: <AdminDriversPage /> },
+  { path: '/admin/afiliados', element: <AffiliatesPage /> },
   { path: '/admin/solicitudes', element: <SolicitudesPage /> },
   { path: '/', element: <AppLayout />, children: routes },
 ])
